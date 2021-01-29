@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Train = sequelize.define("Train", {
+  const Train = sequelize.define("Song", {
     name: DataTypes.STRING,
     number: DataTypes.INTEGER,
     status: DataTypes.STRING,

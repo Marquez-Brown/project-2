@@ -6,7 +6,7 @@ const {
 } = require("@handlebars/allow-prototype-access");
 const app = express();
 const db = require("./models");
-const TrainsController = require("./controllers/trainsController");
+const SongsController = require("./controllers/songsController");
 
 const PORT = process.env.PORT || 8080;
 
@@ -22,9 +22,7 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+
 
 app.get("/api/config", (req, res) => {
   res.json({
@@ -32,7 +30,7 @@ app.get("/api/config", (req, res) => {
   });
 });
 
-app.use(TrainsController);
+app.use(SongsController);
 
 db.sequelize
   .sync()
