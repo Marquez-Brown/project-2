@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Wavelength!</h1>
+    {{#each trains}}
+    <h1>{{name}}</h1>
+    <p>{{number}}</p>
+    <p>{{status}}</p>
+    <p>{{currentStation}}</p>
+    <p>{{eta}}</p>
+    {{/each}}
 </body>
 </html>
+
 
