@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
   res.render("index", { test: "yo mama" });
 });
 
+
 // Route for one song
 router.get("/songs/:id", (req, res) => {
   db.Song.findOne({
@@ -22,6 +23,28 @@ router.get("/songs/:id", (req, res) => {
       res.render("single-song", singleSong.dataValues);
     })
     .catch((err) => {
+
+// Route to list all songs currently in database
+router.get("/songs", (req, res) => {
+  db.Song.findAll()
+    .then((allSongs) => {
+      res.render("all-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+});
+
+// Route to post a song into database
+router.post("/api/songs", (req, res) => {
+  db.Song.create(req.body)
+    .then((createdSong) => {
+      res.json(createdSong);
+    })
+    .catch((err) => {
+      console.log(err);
+
       res.status(500).end();
     });
 });
