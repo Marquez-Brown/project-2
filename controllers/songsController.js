@@ -9,9 +9,13 @@ const router = express.Router();
  * Route to render landing page.
  */
 router.get("/", (req, res) => {
-  //db.Song.findall <-- how to get data from the database to the front end
-  console.log("hello world");
-  res.render("index", { test: "yo mama" });
+	//db.Song.findall <-- how to get data from the database to the front end
+	console.log("hello world");
+	res.render("index", { test: "data values go here (in songsController.js)" });
+
+	//db.Song.findall <-- how to get data from the database to the front end
+	console.log("hello world");
+	res.render("index", { test: "yo mama" });
 });
 
 
@@ -42,18 +46,28 @@ router.get("/songs/:id", (req, res) => {
 
 // Route to list all songs currently in database
 router.get("/songs", (req, res) => {
-  db.Song.findAll()
-    .then((allSongs) => {
-      res.render("all-songs", { songs: allSongs });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).end();
-    });
+	db.Song.findAll()
+		.then((allSongs) => {
+			res.render("all-songs", { songs: allSongs });
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).end();
+		});
 });
 
 // Route to post a song into database
 router.post("/api/songs", (req, res) => {
+
+	db.Song.create(req.body)
+		.then((createdSong) => {
+			res.json(createdSong);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).end();
+		});
+=======
   db.Song.create(req.body)
     .then((createdSong) => {
       res.json(createdSong);
@@ -64,6 +78,7 @@ router.post("/api/songs", (req, res) => {
       res.status(500).end();
       main
     });
+
 });
 
 // /**
