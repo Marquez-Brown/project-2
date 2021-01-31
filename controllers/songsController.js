@@ -37,6 +37,21 @@ router.post("/api/songs", (req, res) => {
     });
 });
 
+// ROUTE FOR TESTING
+router.get("/test", (req, res) => {
+  db.Song.findAll()
+    .then((allSongs) => {
+      res.render("all-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+});
+
+// ROUTE FOR TESTING
+router.
+
 // /**
 //  * Route to render the new train form.
 //  */
