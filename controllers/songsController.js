@@ -17,6 +17,17 @@ router.get("/", (req, res) => {
 	res.render("index", { test: "yo mama" });
 });
 
+
+// Route for one song
+router.get("/songs/:id", (req, res) => {
+  db.Song.findOne({
+    where: { id: req.params.id },
+  })
+    .then((singleSong) => {
+      res.render("single-song", singleSong.dataValues);
+    })
+    .catch((err) => {
+
 // Route to list all songs currently in database
 router.get("/songs", (req, res) => {
 	db.Song.findAll()
@@ -31,6 +42,7 @@ router.get("/songs", (req, res) => {
 
 // Route to post a song into database
 router.post("/api/songs", (req, res) => {
+
 	db.Song.create(req.body)
 		.then((createdSong) => {
 			res.json(createdSong);
@@ -39,6 +51,17 @@ router.post("/api/songs", (req, res) => {
 			console.log(err);
 			res.status(500).end();
 		});
+=======
+  db.Song.create(req.body)
+    .then((createdSong) => {
+      res.json(createdSong);
+    })
+    .catch((err) => {
+      console.log(err);
+
+      res.status(500).end();
+    });
+
 });
 
 // /**
