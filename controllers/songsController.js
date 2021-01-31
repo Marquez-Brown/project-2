@@ -1,5 +1,4 @@
 const express = require("express");
-const { endsWith } = require("sequelize/types/lib/operators");
 const db = require("../models");
 
 const router = express.Router();
@@ -9,15 +8,14 @@ const router = express.Router();
  * Route to render landing page.
  */
 router.get("/", (req, res) => {
-	//db.Song.findall <-- how to get data from the database to the front end
-	console.log("hello world");
-	res.render("index", { test: "data values go here (in songsController.js)" });
+  //db.Song.findall <-- how to get data from the database to the front end
+  console.log("hello world");
+  res.render("index", { test: "data values go here (in songsController.js)" });
 
-	//db.Song.findall <-- how to get data from the database to the front end
-	console.log("hello world");
-	res.render("index", { test: "yo mama" });
+  //db.Song.findall <-- how to get data from the database to the front end
+  console.log("hello world");
+  res.render("index", { test: "yo mama" });
 });
-
 
 // add-update-route
 router.put("/api/songs/:id", (req, res) => {
@@ -32,7 +30,8 @@ router.put("/api/songs/:id", (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(404).end();
-
+    });
+});
 
 // Route for one song
 router.get("/songs/:id", (req, res) => {
@@ -43,45 +42,34 @@ router.get("/songs/:id", (req, res) => {
       res.render("single-song", singleSong.dataValues);
     })
     .catch((err) => {
-
+      res.status(500).end();
+    });
+});
 // Route to list all songs currently in database
 router.get("/songs", (req, res) => {
-	db.Song.findAll()
-		.then((allSongs) => {
-			res.render("all-songs", { songs: allSongs });
-		})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).end();
-		});
+  db.Song.findAll()
+    .then((allSongs) => {
+      res.render("all-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
 });
 
 // Route to post a song into database
 router.post("/api/songs", (req, res) => {
-
-	db.Song.create(req.body)
-		.then((createdSong) => {
-			res.json(createdSong);
-		})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).end();
-		});
-=======
   db.Song.create(req.body)
     .then((createdSong) => {
       res.json(createdSong);
     })
     .catch((err) => {
       console.log(err);
-
       res.status(500).end();
-      main
     });
-
 });
 
-// ROUTE FOR TESTING
+// ROUTE FOR TESTING ALL SONGS
 router.get("/test", (req, res) => {
   db.Song.findAll()
     .then((allSongs) => {
@@ -93,8 +81,18 @@ router.get("/test", (req, res) => {
     });
 });
 
-// ROUTE FOR TESTING
-router.
+// ROUTE FOR TESTING ONE SONG
+router.get("/test/:id", (req, res) => {
+  db.Song.findOne({
+    where: { id: req.params.id },
+  })
+    .then((singleSong) => {
+      res.render("test", singleSong.dataValues);
+    })
+    .catch((err) => {
+      res.status(500).end();
+    });
+});
 
 // /**
 //  * Route to render the new train form.
