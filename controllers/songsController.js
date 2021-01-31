@@ -14,6 +14,7 @@ router.get("/", (req, res) => {
   res.render("index", { test: "yo mama" });
 });
 
+
 // add-update-route
 router.put("/api/songs/:id", (req, res) => {
   db.Song.update(req.body, {
@@ -27,7 +28,18 @@ router.put("/api/songs/:id", (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(404).end();
-=======
+
+
+// Route for one song
+router.get("/songs/:id", (req, res) => {
+  db.Song.findOne({
+    where: { id: req.params.id },
+  })
+    .then((singleSong) => {
+      res.render("single-song", singleSong.dataValues);
+    })
+    .catch((err) => {
+
 // Route to list all songs currently in database
 router.get("/songs", (req, res) => {
   db.Song.findAll()
@@ -48,6 +60,7 @@ router.post("/api/songs", (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+
       res.status(500).end();
       main
     });
