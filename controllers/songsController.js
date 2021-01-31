@@ -1,4 +1,5 @@
 const express = require("express");
+const { endsWith } = require("sequelize/types/lib/operators");
 const db = require("../models");
 
 const router = express.Router();
@@ -8,33 +9,76 @@ const router = express.Router();
  * Route to render landing page.
  */
 router.get("/", (req, res) => {
-  //db.Song.findall <-- how to get data from the database to the front end
-  console.log("hello world");
-  res.render("index", { test: "yo mama" });
+	//db.Song.findall <-- how to get data from the database to the front end
+	console.log("hello world");
+	res.render("index", { test: "data values go here (in songsController.js)" });
+
+	//db.Song.findall <-- how to get data from the database to the front end
+	console.log("hello world");
+	res.render("index", { test: "yo mama" });
 });
 
-// Route to list all songs currently in database
-router.get("/songs", (req, res) => {
-  db.Song.findAll()
-    .then((allSongs) => {
-      res.render("all-songs", { songs: allSongs });
+
+// add-update-route
+router.put("/api/songs/:id", (req, res) => {
+  db.Song.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((result) => {
+      res.json(result);
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).end();
-    });
+      res.status(404).end();
+
+
+// Route for one song
+router.get("/songs/:id", (req, res) => {
+  db.Song.findOne({
+    where: { id: req.params.id },
+  })
+    .then((singleSong) => {
+      res.render("single-song", singleSong.dataValues);
+    })
+    .catch((err) => {
+
+// Route to list all songs currently in database
+router.get("/songs", (req, res) => {
+	db.Song.findAll()
+		.then((allSongs) => {
+			res.render("all-songs", { songs: allSongs });
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).end();
+		});
 });
 
 // Route to post a song into database
 router.post("/api/songs", (req, res) => {
+
+	db.Song.create(req.body)
+		.then((createdSong) => {
+			res.json(createdSong);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).end();
+		});
+=======
   db.Song.create(req.body)
     .then((createdSong) => {
       res.json(createdSong);
     })
     .catch((err) => {
       console.log(err);
+
       res.status(500).end();
+      main
     });
+
 });
 
 // ROUTE FOR TESTING
