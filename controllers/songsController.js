@@ -1,4 +1,5 @@
 const express = require("express");
+const { endsWith } = require("sequelize/types/lib/operators");
 const db = require("../models");
 
 const router = express.Router();
@@ -12,6 +13,21 @@ router.get("/", (req, res) => {
   console.log("hello world");
   res.render("index", { test: "yo mama" });
 });
+
+
+// add-update-route
+router.put("/api/songs/:id", (req, res) => {
+  db.Song.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).end();
 
 
 // Route for one song
@@ -46,6 +62,7 @@ router.post("/api/songs", (req, res) => {
       console.log(err);
 
       res.status(500).end();
+      main
     });
 });
 
