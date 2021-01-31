@@ -10,7 +10,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
 	//db.Song.findall <-- how to get data from the database to the front end
 	console.log("hello world");
-	res.render("index", { test: "yo mama" });
+	res.render("index", { test: "data values go here (in songsController.js)" });
 });
 
 // /**
