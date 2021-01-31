@@ -8,9 +8,22 @@ const router = express.Router();
  * Route to render landing page.
  */
 router.get("/", (req, res) => {
-	//db.Song.findall <-- how to get data from the database to the front end
-	console.log("hello world");
-	res.render("index", { test: "yo mama" });
+  //db.Song.findall <-- how to get data from the database to the front end
+  console.log("hello world");
+  res.render("index", { test: "yo mama" });
+});
+
+// Route for one song
+router.get("/songs/:id", (req, res) => {
+  db.Song.findOne({
+    where: { id: req.params.id },
+  })
+    .then((singleSong) => {
+      res.render("single-song", singleSong.dataValues);
+    })
+    .catch((err) => {
+      res.status(500).end();
+    });
 });
 
 // /**
