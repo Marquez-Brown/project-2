@@ -1,4 +1,5 @@
 const express = require("express");
+const { endsWith } = require("sequelize/types/lib/operators");
 const db = require("../models");
 
 const router = express.Router();
@@ -8,9 +9,24 @@ const router = express.Router();
  * Route to render landing page.
  */
 router.get("/", (req, res) => {
-	//db.Song.findall <-- how to get data from the database to the front end
-	console.log("hello world");
-	res.render("index", { test: "yo mama" });
+  //db.Song.findall <-- how to get data from the database to the front end
+  console.log("hello world");
+  res.render("index", { test: "yo mama" });
+});
+
+router.put("/api/songs/:id", (req, res) => {
+  db.Song.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).end();
+    });
 });
 
 // /**
