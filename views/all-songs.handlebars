@@ -22,13 +22,30 @@
   </div>
 
 
-  {{#each songs}}
-  <h1>{{title}}</h1>
-  <p>{{artist}}</p>
-  <p>{{rating}}</p>
-  <p>{{total_ratings}}</p>
-  <p>{{url}}</p>
-  {{/each}}
+<nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Wavelength</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      </ul>
+      </div>
+      </div>
+    </div>
+    </div>
+  </nav>
+<p>all songs</p>
+    {{#each songs}}
+    <h1>{{title}}</h1>
+    <p>{{artist}}</p>
+    <p>{{rating}}</p>
+    <p>{{total_ratings}}</p>
+    <p>{{url}}</p>
+    {{/each}}
+</body>
+</html>
+
 
 </body>
 
