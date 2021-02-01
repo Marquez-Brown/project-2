@@ -59,9 +59,14 @@ router.get("/songs", (req, res) => {
 
 // Route to post a song into database
 router.post("/api/songs", (req, res) => {
-  db.Song.create(req.body)
-    .then((createdSong) => {
-      res.json(createdSong);
+  db.Song.create({
+	  title: req.body.title,
+	  artist: req.body.artist,
+	  url: req.body.url
+  })
+    .then((data) => {
+		// alert("Song submitted?");
+		res.json(data);
     })
     .catch((err) => {
       console.log(err);
