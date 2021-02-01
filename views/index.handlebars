@@ -19,29 +19,47 @@
          src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
       <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
       </script>
-      <link rel = "stylesheet"
-         src = "../assets/css/stles.css">             
+      {{!-- <link rel = "stylesheet"
+         href="/public/assets/css/styles.css">              --}}
    </head>
    
    <body>
     <div class='container'>
-     <div class = "card-panel teal lighten-2"><h3>Wavelength</h3></div>
+<div class="row">
+    <div class="col valign-wrapper"><span class="flow-text">
 
-     <div class='row'>
-         <div class='textBox'>
-             <p>welcome to our app</p>
-             <div class = "collection-item">
-            <a href = "#!" class = "waves-effect waves-yellow btn secondary-content">
-               Get Started!</a>
-         </div>
-         </div>
-     </div>
 
-     <div class = "card-panel teal lighten-2"><h3>Wavelength</h3></div>
-
+    <div class="row">
+    <div class="col valign-wrapper"><span class="flow-text">
+        <div class="card">
+            <div class="card-content">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam ex veniam magnam cumque modi, quo deserunt aliquid sint cum voluptates, mollitia eum vel dicta quibusdam pariatur tempore, molestiae autem nemo.</p>
+            </div>
+            <div class="card-action">
+            <a class="waves-effect waves-yellow btn-large startBtn" href="../views/all-songs.handlebars">GET STARTED</a>
+            </div>
+        </div>
+      </span>   
     </div>
-</div>
-
+  </div>
+    </div>
    </body>
 </html>
+
+<style>
+    body{
+    background: url(https://wallpaperaccess.com/full/4317958.jpg) no-repeat fixed center;
+    background-size: cover;
+    }
+    .card-action{
+        text-align: center;
+    }
+    .card{
+        margin-top: 25%;
+        opacity: 0.5;
+    }
+    .startBtn {
+        opacity: unset;
+    }
+</style>
 
