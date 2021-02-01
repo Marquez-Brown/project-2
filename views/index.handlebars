@@ -26,7 +26,9 @@
    <body>
     <div class='container'>
 <div class="row">
-    <div class="col valign-wrapper"><span class="flow-text">
+    <div class="title">
+        WAVELENGTH
+    </div>
 
 
     <div class="row">
@@ -35,11 +37,10 @@
             <div class="card-content">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam ex veniam magnam cumque modi, quo deserunt aliquid sint cum voluptates, mollitia eum vel dicta quibusdam pariatur tempore, molestiae autem nemo.</p>
             </div>
-            <div class="card-action">
-            <a class="waves-effect waves-yellow btn-large startBtn" href="../views/all-songs.handlebars">GET STARTED</a>
-            </div>
         </div>
-      </span>   
+    <div class="start">
+        <p><a class="waves-effect waves-yellow btn-large startBtn" href="../views/all-songs.handlebars">GET STARTED</a>
+        </p>
     </div>
   </div>
     </div>
@@ -55,11 +56,25 @@
         text-align: center;
     }
     .card{
-        margin-top: 25%;
+        margin-top: 10%;
         opacity: 0.5;
     }
-    .startBtn {
-        opacity: unset;
+    .card-action{
+        opacity: 1;
+    }
+    .title{
+        text-align: center;
+        margin-top: 15%;
+        color:violet;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-weight: bold;
+        font-size: 125px;
+    }
+    .startBtn{
+        background-color: violet;   
+    }
+    .start{
+        text-align: center;
     }
 </style>
 
