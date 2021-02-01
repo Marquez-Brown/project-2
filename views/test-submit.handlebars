@@ -5,19 +5,19 @@
         <div class="row">
             <div class="input-field col s12">
                 <input id="song_name" type="text" class="validate">
-                <label for="song_name">Song Name</label>
+                <label for="song_name"></label>Song Name
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <input id="artist_name" type="text" class="validate">
-                <label for="artist_name">Artist Name</label>
+                <label for="artist_name"></label>Artist Name
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <input id="spotify_URI" type="text" class="validate">
-                <label for="spotify_URI">Spotify URI</label>
+                <label for="spotify_URI"></label>Spotify URI
             </div>
         </div>
 
@@ -37,14 +37,27 @@
 
         submitButton.on("click", function (event) {
             event.preventDefault();
-            alert("Song name is " + songName.val());
-            alert("Artist name is " + artistName.val());
-            alert("Spotify URI is " + spotifyURI.val());
+            spotifyCode = $("#spotify_URI").val();
+            spotify_URI = spotifyCode.substring(14);
 
+            const song = {
+                title: $("#song_name").val(),
+                artist: $("#artist_name").val(),
+                url: spotify_URI
+            };
+            $.ajax({
+                url: "/api/songs",
+                method: "POST",
+                data: song
+            }).then(response => {
+                console.log(response);
+                window.location.href = "/songs"
+            }).catch(err => {
+                console.log(err);
+            })
+        });
 
-        })
-
-    })
+    });
 
 
 </script>
