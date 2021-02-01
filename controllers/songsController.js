@@ -94,6 +94,18 @@ router.get("/test/:id", (req, res) => {
     });
 });
 
+// ROUTE FOR TESTING SUBMISSION
+router.get("/test-submit", (req, res) => {
+	db.Song.findAll()
+	  .then((allSongs) => {
+		res.render("test-submit", { songs: allSongs });
+	  })
+	  .catch((err) => {
+		console.log(err);
+		res.status(500).end();
+	  });
+  });
+
 // /**
 //  * Route to render the new train form.
 //  */
