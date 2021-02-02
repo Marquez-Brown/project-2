@@ -116,4 +116,58 @@ router.post("/api/songs", (req, res) => {
 });
 
 
+// ROUTE FOR TESTING ALL SONGS
+router.get("/test", (req, res) => {
+  db.Song.findAll()
+    .then((allSongs) => {
+      res.render("all-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+});
+
+// ROUTE FOR TESTING ONE SONG
+router.get("/test/:id", (req, res) => {
+  db.Song.findOne({
+    where: { id: req.params.id },
+  })
+    .then((singleSong) => {
+      res.render("test", singleSong.dataValues);
+    })
+    .catch((err) => {
+      res.status(500).end();
+    });
+});
+
+// ROUTE FOR TESTING NEW SONGS
+router.get("/test-new-songs", (req, res) => {
+  db.Song.findAll({
+    order: ['id', 'DESC'],
+  })
+    .then((allSongs) => {
+      res.render("all-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+ });
+
+ // ROUTE FOR TESTING TOP SONGS
+router.get("/test-top-songs", (req, res) => {
+  db.Song.findAll({
+    order: ['rating', 'DESC'],
+  })
+    .then((allSongs) => {
+      res.render("all-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+ });
+ 
+
 module.exports = router;
