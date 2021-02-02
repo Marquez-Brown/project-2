@@ -1,28 +1,61 @@
-<body>
-  <div class="card-panel teal lighten-2">
-    <h3>Wavelength</h3>
-  </div>
 
-<button class="waves-effect waves-yellow btn-large">Top</button>
-<button class="waves-effect waves-yellow btn-large">New</button>
-<button class="waves-effect waves-yellow btn-large">Add a Song!</button>
+    <h1>Wavelength!</h1>
 
-  {{#each songs}}
-  <h1>{{title}}</h1>
-  <p>{{artist}}</p>
-  <p>{{rating}}</p>
-  <p>{{total_ratings}}</p>
-  <p>{{url}}</p>
-  {{/each}}
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="song_name" type="text" class="validate">
+                <label for="song_name"></label>Song Name
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="artist_name" type="text" class="validate">
+                <label for="artist_name"></label>Artist Name
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="spotify_URI" type="text" class="validate">
+                <label for="spotify_URI"></label>Spotify URI
+            </div>
+        </div>
 
-</body>
+    </form>
+</div>
+<button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button">Submit
+    <i class="material-icons right">send</i>
+</button>
 
-</html>
+<script>
 
-<style>
-  body {
-    background: url(https://bestwallpapers.in/wp-content/uploads/2018/07/wolf-howling-to-moon-minimal-4k-wallpaper-1600x1200.jpg);
-    background-size: cover;
-  }
+    $(document).ready(function () {
+        var songName = $("#song_name");
+        var artistName = $("#artist_name");
+        var spotifyURI = $("#spotify_URI");
+        var submitButton = $("#submit-button");
 
-</style>
+        submitButton.on("click", function (event) {
+            event.preventDefault();
+            spotifyCode = $("#spotify_URI").val();
+            spotify_URI = spotifyCode.substring(14);
+
+            const song = {
+                title: $("#song_name").val(),
+                artist: $("#artist_name").val(),
+                url: spotify_URI
+            };
+            $.ajax({
+                url: "/api/songs",
+                method: "POST",
+                data: song
+            }).then(response => {
+                console.log(response);
+                window.location.href = "/songs"
+            }).catch(err => {
+                console.log(err);
+            })
+        });
+    });
+</script>

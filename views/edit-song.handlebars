@@ -5,19 +5,19 @@
     <form class="col s12">
         <div class="row">
             <div class="input-field col s12">
-                <input id="song_name" type="text" class="validate">
+                <input id="song_name" type="text" value="{{title}}">
                 <label for="song_name"></label>Song Name
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="artist_name" type="text" class="validate">
+                <input id="artist_name" type="text" value="{{artist}}">
                 <label for="artist_name"></label>Artist Name
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="spotify_URI" type="text" class="validate">
+                <input id="spotify_URI" type="text" value="{{url}}">
                 <label for="spotify_URI"></label>Spotify URI
             </div>
         </div>
@@ -57,8 +57,5 @@
                 console.log(err);
             })
         });
-
     });
-
-
 </script>

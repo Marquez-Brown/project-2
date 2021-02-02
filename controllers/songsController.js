@@ -17,45 +17,29 @@ router.get("/", (req, res) => {
   res.render("index", { test: "yo mama" });
 });
 
-// add-update-route
-router.put("/api/songs/:id", (req, res) => {
-  db.Song.update(req.body, {
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((result) => {
-      res.json(result);
+// Route to list all songs currently in database
+router.get("/songs", (req, res) => {
+  db.Song.findAll()
+    .then((allSongs) => {
+      res.render("top-songs", { songs: allSongs });
     })
     .catch((err) => {
       console.log(err);
-      res.status(404).end();
+      res.status(500).end();
     });
 });
 
-// Route to list all songs currently in database
-router.get("/songs", (req, res) => {
-	db.Song.findAll()
-	  .then((allSongs) => {
-		res.render("top-songs", { songs: allSongs });
-	  })
-	  .catch((err) => {
-		console.log(err);
-		res.status(500).end();
-	  });
-  });
-
-// ROUTE FOR TESTING SUBMISSION
+// ROUTE FOR ADDING NEW SONG
 router.get("/songs/new", (req, res) => {
-	db.Song.findAll()
-	  .then((allSongs) => {
-		res.render("edit-song", { songs: allSongs });
-	  })
-	  .catch((err) => {
-		console.log(err);
-		res.status(500).end();
-	  });
-  });
+  db.Song.findAll()
+    .then((allSongs) => {
+      res.render("new-song", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+});
 
 // Route for one song
 router.get("/songs/:id", (req, res) => {
@@ -70,17 +54,28 @@ router.get("/songs/:id", (req, res) => {
     });
 });
 
+//   ROUTE FOR UPDATING A SONG
+router.get("/songs/:id/edit", (req, res) => {
+  db.Song.findOne({ where: { id: req.params.id } })
+    .then((singleSong) => {
+      res.render("edit-song", singleSong.dataValues);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+});
 
 // Route to post a song into database
 router.post("/api/songs", (req, res) => {
   db.Song.create({
-	  title: req.body.title,
-	  artist: req.body.artist,
-	  url: req.body.url
+    title: req.body.title,
+    artist: req.body.artist,
+    url: req.body.url,
   })
     .then((data) => {
-		// alert("Song submitted?");
-		res.json(data);
+      // alert("Song submitted?");
+      res.json(data);
     })
     .catch((err) => {
       console.log(err);
@@ -112,8 +107,6 @@ router.get("/test/:id", (req, res) => {
       res.status(500).end();
     });
 });
-
-
 
 // /**
 //  * Route to render the new train form.
