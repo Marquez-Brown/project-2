@@ -4,7 +4,7 @@
     <div class="card">
       <div class="card-content">
         <h1>"{{title}}"</h1>
-        <h2>{{artist}}</p>
+        <h2><p>{{artist}}</p>
           <iframe src="https://open.spotify.com/embed/track/{{url}}" width=" 300" height="380" frameborder="0"
             allowtransparency="true" allow="encrypted-media"></iframe>
           <p>Likes: {{rating}}</p>
@@ -40,8 +40,28 @@
 
   .card {
     text-align: center;
-    margin: 9% 20% 0% 20%;
+    margin: 0% 20% 0% 20%;
     background-color: rgba(0, 0, 0, 0.842);
     color: #30d7a9;
+  }
+
+  h1{
+    font-size: 20px;
+    color: #2ecbc5;
+  }
+  h2{
+    font-size: 15px;
+    color:#c73afb;
+}
+p{
+  margin-bottom: 10px !important;
+  margin-top: 10px !important;
+}
+  }
+  iframe{
+    margin: 20px;
+  }
+  button{
+    margin-top: 10px;
   }
 </style>
