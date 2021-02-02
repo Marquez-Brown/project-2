@@ -8,13 +8,14 @@ const router = express.Router();
  * Route to render landing page.
  */
 router.get("/", (req, res) => {
-  //db.Song.findall <-- how to get data from the database to the front end
-  console.log("hello world");
-  res.render("index", { test: "data values go here (in songsController.js)" });
-
-  //db.Song.findall <-- how to get data from the database to the front end
-  console.log("hello world");
-  res.render("index", { test: "yo mama" });
+  db.Song.findAll()
+    .then((allSongs) => {
+      res.render("index", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
 });
 
 // Route to list all songs currently in database
@@ -115,7 +116,6 @@ router.post("/api/songs", (req, res) => {
     });
 });
 
-
 // ROUTE FOR TESTING ALL SONGS
 router.get("/test", (req, res) => {
   db.Song.findAll()
@@ -144,7 +144,7 @@ router.get("/test/:id", (req, res) => {
 // ROUTE FOR TESTING NEW SONGS
 router.get("/test-new-songs", (req, res) => {
   db.Song.findAll({
-    order: ['id', 'DESC'],
+    order: ["id", "DESC"],
   })
     .then((allSongs) => {
       res.render("all-songs", { songs: allSongs });
@@ -153,12 +153,12 @@ router.get("/test-new-songs", (req, res) => {
       console.log(err);
       res.status(500).end();
     });
- });
+});
 
- // ROUTE FOR TESTING TOP SONGS
+// ROUTE FOR TESTING TOP SONGS
 router.get("/test-top-songs", (req, res) => {
   db.Song.findAll({
-    order: ['rating', 'DESC'],
+    order: ["rating", "DESC"],
   })
     .then((allSongs) => {
       res.render("all-songs", { songs: allSongs });
@@ -167,7 +167,36 @@ router.get("/test-top-songs", (req, res) => {
       console.log(err);
       res.status(500).end();
     });
- });
- 
+});
+
+// ROUTE TO INCREASE RATING ON BUTTON PRESS
+router.put("/api/songs/upvote/:id", (req, res) => {
+  db.Song.findOne({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((option) => {
+      return option.increment("rating");
+    })
+    .then((option) => {
+      res.json(option);
+    });
+});
+
+// ROUTE TO DISPLAY SONGS IN ORDER OF RATINGS
+router.get("/top-songs", (req, res) => {
+  db.Song.findAll({
+    limit: 5,
+    order: [["rating", "DESC"]],
+  })
+    .then((allSongs) => {
+      res.render("top-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+});
 
 module.exports = router;

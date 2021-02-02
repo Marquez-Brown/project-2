@@ -1,31 +1,30 @@
-  <div class="card-panel teal lighten-2">
-    <h1>Wavelength</h1>
+<div class="row">
+  <div class="col s2"></div>
+  <div class="col s8">
+    <div class="card">
+      <div class="card-content">
+        {{#each songs}}
+        <h1><a href="/songs/{{id}}">"{{title}}"</a></h1>
+        <h2>{{artist}}</h2>
+        <h2>Likes: {{rating}}</h2>
+        <br>
+        {{/each}}
+      </div>
+    </div>
   </div>
+</div>
 
-<button class="waves-effect waves-yellow btn-large">Song Name - Artist - Rating</button>
-<button class="waves-effect waves-yellow btn-large">Song Name - Artist - Rating</button>
-<button class="waves-effect waves-yellow btn-large">Song Name - Artist - Rating</button>
-<button class="waves-effect waves-yellow btn-large">Song Name - Artist - Rating</button>
-<button class="waves-effect waves-yellow btn-large">Song Name - Artist - Rating</button>
-
-<h3>TOP SONGS</h3>
- 
-  {{#each songs}}
-  <h1>{{title}}</h1>
-  <p>{{artist}}</p>
-  <p>{{rating}}</p>
-  <p>{{total_ratings}}</p>
-  <p>{{url}}</p>
-  {{/each}}
-
-
-
-</html>
 
 <style>
   body {
-    background: url(https://images.wallpapersden.com/image/download/synthwave-4k_a2tnZ2mUmZqaraWkpJRqZmdlrWdtbWU.jpg);
+    background-image: URL(https://images.wallpapersden.com/image/download/synthwave-and-retrowave_a2tpbmyUmZqaraWkpJRobWllrWdma2U.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
   }
-
+  .card {
+    text-align: center;
+    margin: 0% 20% 0% 20%;
+    background-color: rgba(0, 0, 0, 0.842);
+    color: #30d7a9;
+  }
 </style>

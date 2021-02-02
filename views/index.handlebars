@@ -1,50 +1,39 @@
-<div class='container'>
-    <div class="row">
-        <div class="col valign-wrapper"><span class="flow-text">
-
-
-                <div class="row">
-                    <div class="col valign-wrapper"><span class="flow-text">
-                            <div class="card">
-                                <div class="card-content">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam ex veniam magnam
-                                        cumque modi, quo deserunt aliquid sint cum voluptates, mollitia eum vel dicta
-                                        quibusdam pariatur tempore, molestiae autem nemo.</p>
-                                </div>
-                                <div class="card-action">
-                                    <a class="waves-effect waves-yellow btn-large startBtn" href="/songs">View All
-                                        Songs</a>
-                                    <a class="waves-effect waves-yellow btn-large startBtn" href="/songs/new">Submit A Song</a>
-
-                                </div>
-                            </div>
-                        </span>
-                    </div>
-                </div>
+<footer class="page-footer" style="position:fixed;bottom:0;left:0;width:100%">
+    <div class="container">
+        <div class="row">
+            <div class="center-align">
+                <a class="waves-effect waves-yellow btn-large startBtn" href="/songs">View All
+                    Songs</a>
+                <a class="waves-effect waves-yellow btn-large startBtn" href="/songs/new">Submit A
+                    Song</a>
+                <a class="waves-effect waves-yellow btn-large startBtn" href="/top-songs">Top 5 Rated Songs</a>
+                </p>
+            </div>
         </div>
 
+    </div>
+</footer>
 
-        <style>
-            body{
-                background-image: URL(https://images.wallpapersden.com/image/download/synthwave-and-retrowave_a2tpbmyUmZqaraWkpJRobWllrWdma2U.jpg);
-                background-size: cover;
-                background-repeat: no-repeat;
-            }
-            .card-action{
-                text-align: center;
-            }
-            .card{
-                margin-top: 30%;
-                background-color:rgba(0, 0, 0, 0.3);
-                color:#30d7a9;
-                text-shadow: 2px 2px #0684a3;
-                font-family: 'Fredoka One', cursive;
-            }
-            .card .card-action a{
-                background-color:rgb(199, 87, 209);
-                color:#0ce4eb66;
-                text-shadow: 2px 2px #00ff4c;
-                font-weight: bold;
-            }
-    
+
+<style>
+    body {
+        background: url(https://images.hdqwalls.com/wallpapers/synthwave-sun-mountains-4k-op.jpg) no-repeat fixed center;
+        background-size: cover;
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    footer.page-footer {
+        background-color: rgba(107, 12, 196, 0);
+    }
+
+    main {
+        flex: 1 0 auto;
+    }
+
+    .startBtn {
+        opacity: unset;
+    }
+
 </style>
