@@ -4,12 +4,18 @@
 
 ## Table of Contents
    - [Description](#description)
+   - [Usage](#usage)
    - [Credits](#credits)
    - [Contributions](#Contributions)
    - [License](#license)
    
 ## Description 
 Have you been looking for a way to find new music, give your own rating, and post songs that you feel like people have to hear? Then search no further! Our app gives users a fun way of sharing their new discoveries with the public. Like the artist? Then feel free to go take a look at some of their hits on our page!
+
+## Usage
+
+![home](/public/assets/images/Home.jpg)
+![song](/public/assets/images/Song.jpg)
 
 ## Credits
  * [Express-Handlebars](https://www.npmjs.com/package/express-handlebars)
