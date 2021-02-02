@@ -47,7 +47,7 @@ router.get("/songs/:id", (req, res) => {
     where: { id: req.params.id },
   })
     .then((singleSong) => {
-      res.render("single-song", singleSong.dataValues);
+      res.render("song", singleSong.dataValues);
     })
     .catch((err) => {
       res.status(500).end();
@@ -114,6 +114,7 @@ router.post("/api/songs", (req, res) => {
       res.status(500).end();
     });
 });
+
 
 // ROUTE FOR TESTING ALL SONGS
 router.get("/test", (req, res) => {
