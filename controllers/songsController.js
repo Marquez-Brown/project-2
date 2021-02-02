@@ -140,5 +140,33 @@ router.get("/test/:id", (req, res) => {
     });
 });
 
+// ROUTE FOR TESTING NEW SONGS
+router.get("/test-new-songs", (req, res) => {
+  db.Song.findAll({
+    order: ['id', 'DESC'],
+  })
+    .then((allSongs) => {
+      res.render("all-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+ });
+
+ // ROUTE FOR TESTING TOP SONGS
+router.get("/test-top-songs", (req, res) => {
+  db.Song.findAll({
+    order: ['rating', 'DESC'],
+  })
+    .then((allSongs) => {
+      res.render("all-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+ });
+ 
 
 module.exports = router;
