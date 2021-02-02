@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 router.get("/songs", (req, res) => {
   db.Song.findAll()
     .then((allSongs) => {
-      res.render("top-songs", { songs: allSongs });
+      res.render("all-songs", { songs: allSongs });
     })
     .catch((err) => {
       console.log(err);
