@@ -187,6 +187,7 @@ router.put("/api/songs/upvote/:id", (req, res) => {
 // ROUTE TO DISPLAY SONGS IN ORDER OF RATINGS
 router.get("/top-songs", (req, res) => {
   db.Song.findAll({
+    limit: 5,
     order: [["rating", "DESC"]],
   })
     .then((allSongs) => {
@@ -199,4 +200,3 @@ router.get("/top-songs", (req, res) => {
 });
 
 module.exports = router;
-
