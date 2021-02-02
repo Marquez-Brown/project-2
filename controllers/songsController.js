@@ -54,7 +54,7 @@ router.get("/songs/:id", (req, res) => {
     });
 });
 
-//   ROUTE FOR UPDATING A SONG
+//   HTML ROUTE FOR UPDATING A SONG
 router.get("/songs/:id/edit", (req, res) => {
   db.Song.findOne({ where: { id: req.params.id } })
     .then((singleSong) => {
@@ -63,6 +63,22 @@ router.get("/songs/:id/edit", (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(500).end();
+    });
+});
+
+// API ROUTE FOR UPDATING A SONG
+router.put("/api/songs/:id", (req, res) => {
+  db.Song.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).end();
     });
 });
 
