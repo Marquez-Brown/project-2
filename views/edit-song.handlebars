@@ -46,13 +46,11 @@
 
     submitButton.on("click", function (event) {
       event.preventDefault();
-      spotifyCode = $("#spotify_URI").val();
-      spotify_URI = spotifyCode.substring(14);
 
       const song = {
         title: $("#song_name").val(),
         artist: $("#artist_name").val(),
-        url: spotify_URI
+        url: $("#spotify_URI").val(),
       };
 
       const id = $("#song-id").val();
