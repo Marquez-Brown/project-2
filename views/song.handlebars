@@ -1,22 +1,49 @@
-<h1>{{title}}</h1>
-<p>{{artist}}</p>
-<p>{{rating}}</p>
-<p>{{total_ratings}}</p>
+<div class="row">
+  <div class="col s2"></div>
+  <div class="col s8">
+    <div class="card">
+      <div class="card-content">
+        <h1>"{{title}}"</h1>
+        <h2>{{artist}}</p>
+          <iframe src="https://open.spotify.com/embed/track/{{url}}" width=" 300" height="380" frameborder="0"
+            allowtransparency="true" allow="encrypted-media"></iframe>
+          <p>Likes: {{rating}}</p>
+          <button class="waves-effect waves-yellow btn-large upvote" data-id="{{id}}">I Like It!</button>
+      </div>
+      <div class="card-action">
+        <a href="/">Link back to homepage maybe?</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-<iframe src="https://open.spotify.com/embed/track/{{url}}" width=" 300" height="380" frameborder="0"
-    allowtransparency="true" allow="encrypted-media"></iframe>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".upvote").on("click", function () {
+      const idToIncrement = $(this).data("id");
+      console.log(idToIncrement);
+
+      $.ajax({
+        url: `/api/songs/upvote/${idToIncrement}`,
+        method: "PUT",
+      }).then(response => {
+        console.log("Upvote Successful");
+      })
+    })
+  })
+</script>
 
 <style>
-  body{
+  body {
     background-image: URL(https://images.wallpapersden.com/image/download/synthwave-and-retrowave_a2tpbmyUmZqaraWkpJRobWllrWdma2U.jpg);
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .card{
+
+  .card {
     text-align: center;
-    margin: 15% 20% 0% 20%;
-    background-color:rgba(0, 0, 0, 0.5);
-    color:#30d7a9;
+    margin: 9% 20% 0% 20%;
+    background-color: rgba(0, 0, 0, 0.842);
+    color: #30d7a9;
   }
 </style>
-    
