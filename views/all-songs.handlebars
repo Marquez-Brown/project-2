@@ -15,6 +15,7 @@
             <p>{{total_ratings}}</p>
             <p>{{url}}</p>
             <a class="waves-effect waves-yellow btn-large" href="/songs/{{id}}/edit">Edit Song</a>
+            <button class="waves-effect waves-yellow btn-large delete" data-id="{{id}}">Delete Song</button>
             {{/each}}
 
 
@@ -22,3 +23,23 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".delete").on("click", function () {
+            const idToDelete = $(this).data("id");
+            console.log(idToDelete);
+
+            $.ajax({
+                url: `/api/songs/${idToDelete}`,
+                method: "DELETE",
+            }).then(response => {
+                window.location.href = "/songs";
+            })
+
+
+
+        })
+    })
+
+</script>
