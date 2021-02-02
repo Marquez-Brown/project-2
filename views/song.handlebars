@@ -1,22 +1,39 @@
-<h1>{{title}}</h1>
-<p>{{artist}}</p>
-<p>{{rating}}</p>
-<p>{{total_ratings}}</p>
 
-<iframe src="https://open.spotify.com/embed/track/{{url}}" width=" 300" height="380" frameborder="0"
-    allowtransparency="true" allow="encrypted-media"></iframe>
+<div class=musicPlayer>
+  <iframe src="https://open.spotify.com/embed/track/{{url}}" width=" 300" height="380" frameborder="0"
+      allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
 
 <style>
-  body{
-    background-image: URL(https://images.wallpapersden.com/image/download/synthwave-and-retrowave_a2tpbmyUmZqaraWkpJRobWllrWdma2U.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+  body {
+        background: linear-gradient(-45deg, #d31985, #d3d616, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 10s ease infinite;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
   .card{
     text-align: center;
     margin: 15% 20% 0% 20%;
     background-color:rgba(0, 0, 0, 0.5);
     color:#30d7a9;
+  }
+  .iframe{
+    text-align: center;
+  }
+  .musicPlayer{
+    text-align-last: center;
+    margin-top: 14%;
   }
 </style>
     
