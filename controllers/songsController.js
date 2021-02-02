@@ -111,6 +111,34 @@ router.get("/test", (req, res) => {
     });
 });
 
+// ROUTE FOR TESTING TOP SONGS
+router.get("/test-top-songs", (req, res) => {
+  db.Song.findAll({
+    order: ['total_rating', 'DESC'],
+  })
+    .then((allSongs) => {
+      res.render("all-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+});
+
+// ROUTE FOR TESTING NEW SONGS
+router.get("/test-new-songs", (req, res) => {
+  db.Song.findAll({
+    order: ['id', 'DESC'],
+  })
+    .then((allSongs) => {
+      res.render("all-songs", { songs: allSongs });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+});
+
 // ROUTE FOR TESTING ONE SONG
 router.get("/test/:id", (req, res) => {
   db.Song.findOne({
