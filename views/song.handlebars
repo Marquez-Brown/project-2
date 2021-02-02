@@ -19,6 +19,7 @@
     $(".upvote").on("click", function () {
       const idToIncrement = $(this).data("id");
       console.log(idToIncrement);
+      $(".upvote").prop('disabled', true).addClass('disabled').off("click");
 
       $.ajax({
         url: `/api/songs/upvote/${idToIncrement}`,
