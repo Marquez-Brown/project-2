@@ -47,7 +47,7 @@ router.get("/songs/:id", (req, res) => {
     where: { id: req.params.id },
   })
     .then((singleSong) => {
-      res.render("single-song", singleSong.dataValues);
+      res.render("song", singleSong.dataValues);
     })
     .catch((err) => {
       res.status(500).end();
@@ -111,31 +111,6 @@ router.post("/api/songs", (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).end();
-    });
-});
-
-// ROUTE FOR TESTING ALL SONGS
-router.get("/test", (req, res) => {
-  db.Song.findAll()
-    .then((allSongs) => {
-      res.render("all-songs", { songs: allSongs });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).end();
-    });
-});
-
-// ROUTE FOR TESTING ONE SONG
-router.get("/test/:id", (req, res) => {
-  db.Song.findOne({
-    where: { id: req.params.id },
-  })
-    .then((singleSong) => {
-      res.render("test", singleSong.dataValues);
-    })
-    .catch((err) => {
       res.status(500).end();
     });
 });
