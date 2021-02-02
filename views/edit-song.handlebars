@@ -1,39 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
-</head>
-<body>
     <h1>Wavelength!</h1>
 
-    <div class="row">
+<div class="row">
     <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input  id="first_name" type="text" class="validate">
-          <label for="first_name">Song Name</label>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="song_name" type="text" class="validate">
+                <label for="song_name"></label>Song Name
+            </div>
         </div>
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Artist Name</label>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="artist_name" type="text" class="validate">
+                <label for="artist_name"></label>Artist Name
+            </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Spotify URI</label>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="spotify_URI" type="text" class="validate">
+                <label for="spotify_URI"></label>Spotify URI
+            </div>
         </div>
-      </div>
-      <a class="waves-effect waves-yellow btn-large startBtn" href="/">Update</a>
-    </form>
-  </div>
 
-</body>
-</html>
+    </form>
+</div>
+<button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button">Submit
+    <i class="material-icons right">send</i>
+</button>
+
+<script>
+
+    $(document).ready(function () {
+        var songName = $("#song_name");
+        var artistName = $("#artist_name");
+        var spotifyURI = $("#spotify_URI");
+        var submitButton = $("#submit-button");
+
+        submitButton.on("click", function (event) {
+            event.preventDefault();
+            spotifyCode = $("#spotify_URI").val();
+            spotify_URI = spotifyCode.substring(14);
+
+            const song = {
+                title: $("#song_name").val(),
+                artist: $("#artist_name").val(),
+                url: spotify_URI
+            };
+            $.ajax({
+                url: "/api/songs",
+                method: "POST",
+                data: song
+            }).then(response => {
+                console.log(response);
+                window.location.href = "/songs"
+            }).catch(err => {
+                console.log(err);
+            })
+        });
+
+    });
+
+
+</script>

@@ -33,6 +33,30 @@ router.put("/api/songs/:id", (req, res) => {
     });
 });
 
+// Route to list all songs currently in database
+router.get("/songs", (req, res) => {
+	db.Song.findAll()
+	  .then((allSongs) => {
+		res.render("top-songs", { songs: allSongs });
+	  })
+	  .catch((err) => {
+		console.log(err);
+		res.status(500).end();
+	  });
+  });
+
+// ROUTE FOR TESTING SUBMISSION
+router.get("/songs/new", (req, res) => {
+	db.Song.findAll()
+	  .then((allSongs) => {
+		res.render("edit-song", { songs: allSongs });
+	  })
+	  .catch((err) => {
+		console.log(err);
+		res.status(500).end();
+	  });
+  });
+
 // Route for one song
 router.get("/songs/:id", (req, res) => {
   db.Song.findOne({
@@ -45,17 +69,7 @@ router.get("/songs/:id", (req, res) => {
       res.status(500).end();
     });
 });
-// Route to list all songs currently in database
-router.get("/songs", (req, res) => {
-  db.Song.findAll()
-    .then((allSongs) => {
-      res.render("all-songs", { songs: allSongs });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).end();
-    });
-});
+
 
 // Route to post a song into database
 router.post("/api/songs", (req, res) => {
@@ -99,17 +113,7 @@ router.get("/test/:id", (req, res) => {
     });
 });
 
-// ROUTE FOR TESTING SUBMISSION
-router.get("/test-submit", (req, res) => {
-	db.Song.findAll()
-	  .then((allSongs) => {
-		res.render("test-submit", { songs: allSongs });
-	  })
-	  .catch((err) => {
-		console.log(err);
-		res.status(500).end();
-	  });
-  });
+
 
 // /**
 //  * Route to render the new train form.
